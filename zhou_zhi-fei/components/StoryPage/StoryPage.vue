@@ -57,6 +57,7 @@ export default {
         window.addEventListener('resize', scrollerStoryNav.resize)
         // ---------------Handle roundMarker animation-----------------
         const scrollerStorys = scrollama()
+        const scrollerRoundMarkerAge = scrollama()
 
         scrollerStorys
             .setup({
@@ -67,7 +68,6 @@ export default {
                 const { element } = response
                 element.children[0].classList.add('RoundMarkerBig_fix')
 
-                this.currentAge = element.children[0].id
                 this.currentChapter = element.parentElement.id
             })
             .onStepExit((response) => {
@@ -75,7 +75,18 @@ export default {
                 element.children[0].classList.remove('RoundMarkerBig_fix')
             })
 
-        window.addEventListener('resize', scrollerStorys.resize)
+        scrollerRoundMarkerAge
+            .setup({
+                step: '.age_section',
+                offset: 0.6,
+            })
+            .onStepEnter((response) => {
+                const { element } = response
+
+                this.currentAge = element.children[0].id
+            })
+
+        window.addEventListener('resize', scrollerRoundMarkerAge.resize)
     },
 }
 </script>

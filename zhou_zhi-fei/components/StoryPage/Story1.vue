@@ -1,18 +1,17 @@
 <template>
-    <div class="Story" id="1">
+    <div id="1" class="Story">
+        <ArticleTitle
+            >Ch1<br />
+            2-8 歲 肥肉、白蛆、遛狗鏈</ArticleTitle
+        >
+
+        <ArticleParagraph>
+            <p>
+                許多年以後，周子飛在餐廳打工，瞥見廚房餿水桶裡翻動著的白白的蛆，忽然想起童年的菜色。他頓悟了：原來，人類世界裡，是沒人拿蛆作為食物的。又過了許多年，四十三歲的周子飛坐在我們面前，腦中閃過這些畫面，他忽然有點納悶：「一般小孩吃蛆，是不是會有什麼病？是不是會死掉？」他又問，「後來我想想，ㄟ，我有吃蛆。那為什麼我到現在，還是一個健康（的人）？」
+            </p>
+        </ArticleParagraph>
         <div class="age_section">
             <RoundMarkerBig id="02">02</RoundMarkerBig>
-
-            <ArticleTitle
-                >Ch1<br />
-                2-8 歲 肥肉、白蛆、遛狗鏈</ArticleTitle
-            >
-
-            <ArticleParagraph>
-                <p>
-                    許多年以後，周子飛在餐廳打工，瞥見廚房餿水桶裡翻動著的白白的蛆，忽然想起童年的菜色。他頓悟了：原來，人類世界裡，是沒人拿蛆作為食物的。又過了許多年，四十三歲的周子飛坐在我們面前，腦中閃過這些畫面，他忽然有點納悶：「一般小孩吃蛆，是不是會有什麼病？是不是會死掉？」他又問，「後來我想想，ㄟ，我有吃蛆。那為什麼我到現在，還是一個健康（的人）？」
-                </p>
-            </ArticleParagraph>
 
             <ArticlePicture :imageUrl="imageCarousel" :autoplayTimeout="5000"
                 >照片圖說照片圖說照片圖說照片圖說照片圖說照片圖說</ArticlePicture

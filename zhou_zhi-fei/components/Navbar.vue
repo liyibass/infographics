@@ -86,6 +86,10 @@ export default {
             if (currentScrollPosition < 0) {
                 return
             }
+            if (currentScrollPosition === 0) {
+                this.showNavbar = true
+                return
+            }
             // Here we determine whether we need to show or hide the navbar
             this.showNavbar = currentScrollPosition < this.lastScrollPosition
             // Set the current scroll position as the last scroll position
