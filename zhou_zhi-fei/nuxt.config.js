@@ -11,7 +11,7 @@ export default {
 
     // Global page headers (https://go.nuxtjs.dev/config-head)
     head: {
-        title: '周子飛',
+        title: SITE_TITLE,
         meta: [
             { charset: 'utf-8' },
             {
@@ -65,7 +65,10 @@ export default {
     ],
 
     // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
-    plugins: [],
+    plugins: [
+        { src: '~/plugins/VueSmoothScroll', ssr: false },
+        { src: '~/plugins/VueYouTubeEmbed', ssr: false },
+    ],
 
     // Auto import components (https://go.nuxtjs.dev/config-components)
     components: true,
@@ -88,7 +91,8 @@ export default {
     },
 
     router: {
-        base: '/project/zhou_zhi_fei/',
+        base: '/project/3/zhou_zhi_fei/',
+        // base: '/project/zhou_zhi_fei/',
         extendRoutes(routes, resolve) {
             routes.push({
                 name: 'custom',

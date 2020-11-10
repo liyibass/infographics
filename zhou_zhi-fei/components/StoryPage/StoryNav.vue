@@ -18,11 +18,8 @@
 import chapterMixin from '~/mixins/chapterMixin'
 export default {
     mixins: [chapterMixin],
-    data() {
-        return {
-            currentChapter: 1,
-        }
-    },
+    props: ['currentChapter'],
+
     methods: {
         chooseChapter(newId) {
             this.currentChapter = newId

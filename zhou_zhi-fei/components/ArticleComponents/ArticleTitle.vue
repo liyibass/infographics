@@ -15,7 +15,7 @@ export default {}
     text-align: justify;
     color: #4a4a4a;
 
-    margin-bottom: 20px;
+    margin-bottom: 32px;
     @include atSmall {
     }
 }

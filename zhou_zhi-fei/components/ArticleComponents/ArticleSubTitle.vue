@@ -13,6 +13,8 @@ export default {}
     font-size: 21px;
     color: #4a4a4a;
 
+    margin-bottom: 30px;
+
     @include atSmall {
     }
 }
