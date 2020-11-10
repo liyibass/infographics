@@ -4,24 +4,27 @@
             class="RoundMarker_open"
             :showBar="true"
             @click.native="toggleHandler"
-            >17</RoundMarker
+            >{{ currentAge }}</RoundMarker
         >
-        <div v-if="expandFlag" class="MobileStoryNav__container">
-            <div
-                v-for="item in chapterList"
-                :key="item.id"
-                class="MobileStoryNav__container_item"
-            >
-                {{ item.title }}
-            </div>
+        <transition name="slide">
+            <div v-if="expandFlag" class="MobileStoryNav__container">
+                <div
+                    v-for="item in chapterList"
+                    :key="item.id"
+                    class="MobileStoryNav__container_item"
+                    @click="chooseChapter(item.id)"
+                >
+                    {{ item.title }}
+                </div>
 
-            <RoundMarker
-                class="RoundMarker_close"
-                :showBar="false"
-                @click.native="toggleHandler"
-                >X</RoundMarker
-            >
-        </div>
+                <RoundMarker
+                    class="RoundMarker_close"
+                    :showBar="false"
+                    @click.native="toggleHandler"
+                    >X</RoundMarker
+                >
+            </div>
+        </transition>
     </div>
 </template>
 
@@ -29,6 +32,7 @@
 import chapterMixin from '~/mixins/chapterMixin'
 import RoundMarker from '~/components/RoundMarker'
 export default {
+    props: ['currentAge'],
     components: {
         RoundMarker,
     },
@@ -43,6 +47,16 @@ export default {
     methods: {
         toggleHandler() {
             this.expandFlag = !this.expandFlag
+        },
+        chooseChapter(newId) {
+            this.expandFlag = false
+            this.currentChapter = newId
+            const myEl = document.getElementById(`${newId}`)
+
+            this.$smoothScroll({
+                scrollTo: myEl,
+                // hash: '#StoryNav', // required if updateHistory is true
+            })
         },
     },
 }
@@ -99,6 +113,20 @@ export default {
         position: fixed;
         top: 0;
         right: 0;
+    }
+
+    .slide-enter-active,
+    .slide-leave-active {
+        transition: all 0.2s;
+    }
+
+    .slide-enter,
+    .slide-leave-to {
+        transform: translateX(100%);
+    }
+    .slide-leave,
+    .slide-enter-to {
+        transform: translateX(0);
     }
 }
 </style>

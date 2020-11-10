@@ -1,6 +1,6 @@
 <template>
     <div class="StoryPage" :class="{ fixMobileStoryNav: isStoryPageFull }">
-        <MobileStoryNav />
+        <MobileStoryNav v-if="showMobileStoryNav" :currentAge="currentAge" />
 
         <StoryNav class="StoryPage__nav" :currentChapter="currentChapter" />
 
@@ -31,7 +31,9 @@ export default {
     data() {
         return {
             isStoryPageFull: false,
-            currentChapter: 1,
+            showMobileStoryNav: false,
+            currentChapter: '1',
+            currentAge: '02',
         }
     },
 
@@ -45,47 +47,35 @@ export default {
             })
             .onStepEnter((response) => {
                 this.isStoryPageFull = true
+                this.showMobileStoryNav = true
             })
             .onStepExit((response) => {
                 this.isStoryPageFull = false
+                this.showMobileStoryNav = false
             })
 
         window.addEventListener('resize', scrollerStoryNav.resize)
         // ---------------Handle roundMarker animation-----------------
-        const scrollerRoundMarkers = scrollama()
         const scrollerStorys = scrollama()
-
-        // scrollerRoundMarkers
-        //     .setup({
-        //         step: '.RoundMarkerBig',
-        //         offset: 0.2,
-        //     })
-        //     .onStepEnter((response) => {
-        //         const { element } = response
-        //         element.classList.add('RoundMarkerBig_fix')
-        //     })
-        //     .onStepExit((response) => {
-        //         const { direction, element } = response
-        //         if (direction === 'down') return
-
-        //         element.classList.remove('RoundMarkerBig_fix')
-        //     })
 
         scrollerStorys
             .setup({
-                step: '.Story',
-                offset: 0.15,
+                step: '.age_section',
+                offset: 0.2,
             })
             .onStepEnter((response) => {
                 const { element } = response
                 element.children[0].classList.add('RoundMarkerBig_fix')
 
-                this.currentChapter = element.id
+                this.currentAge = element.children[0].id
+                this.currentChapter = element.parentElement.id
             })
             .onStepExit((response) => {
                 const { element } = response
                 element.children[0].classList.remove('RoundMarkerBig_fix')
             })
+
+        window.addEventListener('resize', scrollerStorys.resize)
     },
 }
 </script>
@@ -103,7 +93,7 @@ export default {
     width: 100%;
 
     &__nav {
-        display: none;
+        display: none !important;
     }
 
     &__story_container {
@@ -127,7 +117,7 @@ export default {
         }
 
         &__nav {
-            display: flex;
+            display: flex !important;
 
             width: 30%;
         }
@@ -184,24 +174,29 @@ export default {
     }
 }
 
-.RoundMarkerBig {
-    position: absolute;
-    left: -100px;
-    top: 0;
+.age_section {
+    position: relative;
+    padding-bottom: 1px;
 
-    @include atLarge {
-        left: -158px;
+    .RoundMarkerBig {
+        position: absolute;
+        left: -100px;
+        top: 0;
+
+        @include atLarge {
+            left: -158px;
+        }
     }
-}
 
-.RoundMarkerBig_fix {
-    position: fixed;
-    top: 15%;
+    .RoundMarkerBig_fix {
+        position: fixed;
+        top: 20%;
 
-    left: calc(30% - 30px);
+        left: calc(30% - 30px);
 
-    @include atLarge {
-        left: calc(36% - 30px);
+        @include atLarge {
+            left: calc(36% - 30px);
+        }
     }
 }
 </style>

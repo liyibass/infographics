@@ -22,7 +22,13 @@ export default {
 
     methods: {
         chooseChapter(newId) {
-            this.currentChapter = newId
+            // no need to change currentChapter in here,
+            // after jumping to chapter, the roundMarker would handle that.
+            const myEl = document.getElementById(`${newId}`)
+
+            this.$smoothScroll({
+                scrollTo: myEl,
+            })
         },
     },
 }

@@ -1,5 +1,5 @@
 <template>
-    <div class="RoundMarkerBig">
+    <div :id="this.$slots.default[0].text" class="RoundMarkerBig">
         <div class="RoundMarkerBig__body">
             <div class="RoundMarkerBig__inner_body">
                 <slot />
@@ -18,9 +18,13 @@ export default {
 
 <style lang="scss" scoped>
 .RoundMarkerBig {
-    display: flex;
+    display: none;
     flex-direction: row;
     align-items: center;
+
+    @include atMedium {
+        display: flex;
+    }
 
     &__body {
         width: 60px;

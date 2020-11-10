@@ -23,10 +23,6 @@ export default {
             videoId: 'Dx5qFachd3A',
         }
     },
-
-    created() {
-        console.log(this.videoId)
-    },
 }
 </script>
 
