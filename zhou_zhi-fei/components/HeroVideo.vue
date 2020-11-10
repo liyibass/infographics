@@ -30,5 +30,9 @@ export default {}
         bottom: 20px;
         right: 20px;
     }
+
+    @include atSmall {
+        display: none;
+    }
 }
 </style>
